@@ -1,0 +1,20 @@
+name: app_widgets
+description: Shared Flutter design system tokens and genuinely shared UI components.
+version: 1.0.0
+publish_to: 'none'
+
+environment:
+  sdk: ^3.11.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  app_core:
+    path: ../app_core
+  app_models:
+    path: ../app_models
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0

@@ -1,0 +1,33 @@
+abstract class AdminRoutes {
+  static const splash = '/splash';
+  static const login = '/login';
+  static const selectRestaurant = '/select-restaurant';
+  static const selectBranch = '/select-branch';
+  static const dashboard = '/dashboard';
+  static const orders = '/orders';
+  static const orderDetail = '/orders/:id';
+  static const kds = '/kds';
+  static const categories = '/categories';
+  static const categoryNew = '/categories/new';
+  static const categoryEdit = '/categories/:id/edit';
+  static const products = '/products';
+  static const productNew = '/products/new';
+  static const productEdit = '/products/:id/edit';
+  static const modifiers = '/modifiers';
+  static const modifierNew = '/modifiers/new';
+  static const modifierEdit = '/modifiers/:id/edit';
+  static const tables = '/tables';
+  static const tableNew = '/tables/new';
+  static const tableDetail = '/tables/:id';
+  static const tableQr = '/tables/:id/qr';
+  static const staff = '/staff';
+  static const staffInvite = '/staff/invite';
+  static const payments = '/payments';
+  static const paymentDetail = '/payments/:id';
+  static const reports = '/reports';
+  static const settings = '/settings';
+  static const settingsRestaurant = '/settings/restaurant';
+  static const settingsBranch = '/settings/branch';
+  static const settingsOpeningHours = '/settings/opening-hours';
+  static const profile = '/profile';
+}
