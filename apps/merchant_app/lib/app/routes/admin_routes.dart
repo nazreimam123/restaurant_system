@@ -3,6 +3,7 @@ abstract class AdminRoutes {
   static const login = '/login';
   static const selectRestaurant = '/select-restaurant';
   static const selectBranch = '/select-branch';
+  static const createRestaurant = '/create-restaurant';
   static const dashboard = '/dashboard';
   static const orders = '/orders';
   static const orderDetail = '/orders/:id';

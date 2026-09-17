@@ -4,6 +4,8 @@ import '../../features/auth/views/login_view.dart';
 import '../../features/branch_select/bindings/branch_select_binding.dart';
 import '../../features/branch_select/views/branch_select_view.dart';
 import '../../features/category/bindings/category_binding.dart';
+import '../../features/create_restaurant/bindings/create_restaurant_binding.dart';
+import '../../features/create_restaurant/views/create_restaurant_view.dart';
 import '../../features/category/bindings/category_form_binding.dart';
 import '../../features/category/views/category_form_page.dart';
 import '../../features/category/views/category_list_page.dart';
@@ -53,6 +55,11 @@ class AdminPages {
       name: AdminRoutes.selectBranch,
       page: () => const BranchSelectView(),
       binding: BranchSelectBinding(),
+    ),
+    GetPage(
+      name: AdminRoutes.createRestaurant,
+      page: () => const CreateRestaurantView(),
+      binding: CreateRestaurantBinding(),
     ),
     GetPage(
       name: AdminRoutes.dashboard,

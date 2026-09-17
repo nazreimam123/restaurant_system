@@ -30,6 +30,7 @@ export 'restaurant/restaurant_membership.dart';
 export 'restaurant/branch_access.dart';
 export 'restaurant/merchant_context.dart';
 export 'restaurant/customer_restaurant_context.dart';
+export 'restaurant/create_restaurant_models.dart';
 
 // Menu
 export 'menu/modifier_model.dart';

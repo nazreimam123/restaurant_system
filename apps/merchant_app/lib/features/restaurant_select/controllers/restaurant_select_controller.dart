@@ -114,6 +114,12 @@ class RestaurantSelectController extends GetxController {
     }
   }
 
+  bool get isAuthenticated => _sessionService.isAuthenticated.value;
+
+  void goToCreateRestaurant() {
+    Get.toNamed(AdminRoutes.createRestaurant);
+  }
+
   Future<void> signOut() async {
     await _sessionService.signOut();
     _contextService.clearContext();

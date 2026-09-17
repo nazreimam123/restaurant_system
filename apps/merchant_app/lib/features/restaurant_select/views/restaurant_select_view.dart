@@ -15,6 +15,11 @@ class RestaurantSelectView extends GetView<RestaurantSelectController> {
         title: const Text('Select Restaurant'),
         actions: [
           IconButton(
+            icon: const Icon(Icons.add_business_rounded),
+            tooltip: 'Create Restaurant',
+            onPressed: controller.goToCreateRestaurant,
+          ),
+          IconButton(
             icon: const Icon(Icons.logout_rounded),
             tooltip: 'Sign Out',
             onPressed: controller.signOut,
@@ -38,14 +43,25 @@ class RestaurantSelectView extends GetView<RestaurantSelectController> {
         }
 
         if (controller.memberships.isEmpty) {
-          return AppEmptyState(
-            icon: Icons.store_outlined,
-            title: 'No Restaurant Access',
-            message:
-                'Your account is not assigned to any active restaurant.\nContact your restaurant owner or administrator.',
-            actionLabel: 'Sign Out',
-            onAction: controller.signOut,
-          );
+          if (controller.isAuthenticated) {
+            return AppEmptyState(
+              icon: Icons.storefront_outlined,
+              title: 'No restaurants yet.',
+              message:
+                  'You are not associated with any restaurant yet. Create your first restaurant to get started.',
+              actionLabel: 'Create Restaurant',
+              onAction: controller.goToCreateRestaurant,
+            );
+          } else {
+            return AppEmptyState(
+              icon: Icons.store_outlined,
+              title: 'No Restaurant Access',
+              message:
+                  'Your account is not assigned to any active restaurant.\nContact your restaurant owner or administrator.',
+              actionLabel: 'Sign Out',
+              onAction: controller.signOut,
+            );
+          }
         }
 
         return Center(

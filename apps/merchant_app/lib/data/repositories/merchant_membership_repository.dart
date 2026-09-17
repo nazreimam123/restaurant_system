@@ -13,4 +13,10 @@ abstract class MerchantMembershipRepository {
     required String restaurantId,
     required StaffRole role,
   });
+
+  /// Creates a new restaurant along with its initial branch and settings via `create_restaurant` RPC.
+  /// Assigns the authenticated caller as owner.
+  Future<CreateRestaurantResult> createRestaurant(
+    CreateRestaurantRequest request,
+  );
 }

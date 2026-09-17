@@ -1,4 +1,4 @@
-import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:supabase_flutter/supabase_flutter.dart' hide ErrorCode;
 import 'package:app_core/app_core.dart';
 import 'package:app_models/app_models.dart';
 import '../../core/services/supabase_service.dart';
@@ -136,6 +136,53 @@ class SupabaseMerchantMembershipRepository
 
       return branches;
     } catch (e, st) {
+      throw ErrorMapper.map(e, st);
+    }
+  }
+
+  @override
+  Future<CreateRestaurantResult> createRestaurant(
+    CreateRestaurantRequest request,
+  ) async {
+    if (!_supabaseService.isInitialized) {
+      throw const NetworkException(
+        message: 'Backend service is not configured. Please verify connection.',
+      );
+    }
+
+    try {
+      final userId = _client.auth.currentUser?.id;
+      if (userId == null) {
+        throw const AppAuthException(
+          message: 'Authentication required to create a restaurant.',
+        );
+      }
+
+      final response = await _client.rpc(
+        'create_restaurant',
+        params: request.toRpcParams(),
+      );
+
+      if (response is Map<String, dynamic>) {
+        final ok = response['ok'] as bool? ?? false;
+        if (!ok) {
+          final errMap = response['error'] as Map<String, dynamic>?;
+          final codeStr = errMap?['code'] as String? ?? 'CONFLICT';
+          final message =
+              errMap?['message'] as String? ?? 'Failed to create restaurant.';
+          throw ErrorMapper.fromApiError(code: codeStr, message: message);
+        }
+
+        final data = response['data'] as Map<String, dynamic>;
+        return CreateRestaurantResult.fromJson(data);
+      }
+
+      throw ServerException(
+        message: 'Invalid response from create_restaurant RPC.',
+        code: ErrorCode.serverError,
+      );
+    } catch (e, st) {
+      if (e is AppException) rethrow;
       throw ErrorMapper.map(e, st);
     }
   }
