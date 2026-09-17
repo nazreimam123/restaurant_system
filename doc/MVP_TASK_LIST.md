@@ -1504,30 +1504,30 @@ Do not send sensitive PII.
 
 # 87. Admin App — Categories
 
-- [ ] Category list
-- [ ] Add
-- [ ] Edit
-- [ ] Reorder
-- [ ] Activate/deactivate
-- [ ] Image optional
-- [ ] Empty state
-- [ ] Permission checks
+- [x] Category list
+- [x] Add
+- [x] Edit
+- [x] Reorder
+- [x] Activate/deactivate
+- [x] Image optional
+- [x] Empty state
+- [x] Permission checks
 
 ---
 
 # 88. Admin App — Products
 
-- [ ] Product list
-- [ ] Add product
-- [ ] Edit product
-- [ ] Archive product
-- [ ] Sold-out toggle
-- [ ] Category selection
-- [ ] Price minor conversion
-- [ ] Product image
-- [ ] Modifiers
-- [ ] Search
-- [ ] Filter by category
+- [x] Product list
+- [x] Add product
+- [x] Edit product
+- [x] Archive product
+- [x] Sold-out toggle
+- [x] Category selection
+- [x] Price minor conversion
+- [x] Product image
+- [x] Modifiers
+- [x] Search
+- [x] Filter by category
 
 ---
 
@@ -1545,42 +1545,42 @@ Do not send sensitive PII.
 
 # 90. Admin App — Modifiers
 
-- [ ] Modifier-group list
-- [ ] Add group
-- [ ] Edit group
-- [ ] Required flag
-- [ ] Min/max validation
-- [ ] Add modifier
-- [ ] Edit modifier
-- [ ] Price delta
-- [ ] Availability
-- [ ] Assign group to product
+- [x] Modifier-group list
+- [x] Add group
+- [x] Edit group
+- [x] Required flag
+- [x] Min/max validation
+- [x] Add modifier
+- [x] Edit modifier
+- [x] Price delta
+- [x] Availability
+- [x] Assign group to product
 
 ---
 
 # 91. Admin App — Tables
 
-- [ ] Table list
-- [ ] Add table
-- [ ] Edit table
-- [ ] Capacity
-- [ ] Area optional
-- [ ] Active state
-- [ ] QR preview
-- [ ] Share QR
-- [ ] Rotate QR
-- [ ] Confirmation dialog
+- [x] Table list
+- [x] Add table
+- [x] Edit table
+- [x] Capacity
+- [x] Area optional
+- [x] Active state
+- [x] QR preview
+- [x] Share QR
+- [x] Rotate QR
+- [x] Confirmation dialog
 
 ---
 
 # 92. Admin App — QR Visual Generation
 
-- [ ] Build QR from resolver URL
-- [ ] Include table name
-- [ ] Include restaurant name/logo optional
-- [ ] Save/share image
-- [ ] Print support later
-- [ ] Verify generated QR scans
+- [x] Build QR from resolver URL
+- [x] Include table name
+- [x] Include restaurant name/logo optional
+- [x] Save/share image
+- [x] Print support later
+- [x] Verify generated QR scans
 
 ---
 

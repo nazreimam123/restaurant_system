@@ -3,11 +3,29 @@ import '../../features/auth/bindings/login_binding.dart';
 import '../../features/auth/views/login_view.dart';
 import '../../features/branch_select/bindings/branch_select_binding.dart';
 import '../../features/branch_select/views/branch_select_view.dart';
+import '../../features/category/bindings/category_binding.dart';
+import '../../features/category/bindings/category_form_binding.dart';
+import '../../features/category/views/category_form_page.dart';
+import '../../features/category/views/category_list_page.dart';
+import '../../features/modifier/bindings/modifier_binding.dart';
+import '../../features/modifier/bindings/modifier_form_binding.dart';
+import '../../features/modifier/views/modifier_group_form_page.dart';
+import '../../features/modifier/views/modifier_group_list_page.dart';
 import '../../features/placeholder/placeholder_view.dart';
+import '../../features/product/bindings/product_binding.dart';
+import '../../features/product/bindings/product_form_binding.dart';
+import '../../features/product/views/product_form_page.dart';
+import '../../features/product/views/product_list_page.dart';
 import '../../features/restaurant_select/bindings/restaurant_select_binding.dart';
 import '../../features/restaurant_select/views/restaurant_select_view.dart';
 import '../../features/splash/bindings/splash_binding.dart';
 import '../../features/splash/views/splash_view.dart';
+import '../../features/table/bindings/qr_binding.dart';
+import '../../features/table/bindings/table_binding.dart';
+import '../../features/table/bindings/table_form_binding.dart';
+import '../../features/table/views/qr_preview_page.dart';
+import '../../features/table/views/table_form_page.dart';
+import '../../features/table/views/table_list_page.dart';
 import 'admin_routes.dart';
 
 class AdminPages {
@@ -66,94 +84,68 @@ class AdminPages {
     ),
     GetPage(
       name: AdminRoutes.categories,
-      page: () => const PlaceholderView(
-        title: 'Menu Categories',
-        routePath: AdminRoutes.categories,
-      ),
+      page: () => const CategoryListPage(),
+      binding: CategoryBinding(),
     ),
     GetPage(
       name: AdminRoutes.categoryNew,
-      page: () => const PlaceholderView(
-        title: 'Create Category',
-        routePath: AdminRoutes.categoryNew,
-      ),
+      page: () => const CategoryFormPage(),
+      binding: CategoryFormBinding(),
     ),
     GetPage(
       name: AdminRoutes.categoryEdit,
-      page: () => const PlaceholderView(
-        title: 'Edit Category',
-        routePath: AdminRoutes.categoryEdit,
-      ),
+      page: () => const CategoryFormPage(),
+      binding: CategoryFormBinding(),
     ),
     GetPage(
       name: AdminRoutes.products,
-      page: () => const PlaceholderView(
-        title: 'Product Management',
-        routePath: AdminRoutes.products,
-      ),
+      page: () => const ProductListPage(),
+      binding: ProductBinding(),
     ),
     GetPage(
       name: AdminRoutes.productNew,
-      page: () => const PlaceholderView(
-        title: 'New Product',
-        routePath: AdminRoutes.productNew,
-      ),
+      page: () => const ProductFormPage(),
+      binding: ProductFormBinding(),
     ),
     GetPage(
       name: AdminRoutes.productEdit,
-      page: () => const PlaceholderView(
-        title: 'Edit Product',
-        routePath: AdminRoutes.productEdit,
-      ),
+      page: () => const ProductFormPage(),
+      binding: ProductFormBinding(),
     ),
     GetPage(
       name: AdminRoutes.modifiers,
-      page: () => const PlaceholderView(
-        title: 'Modifier Groups',
-        routePath: AdminRoutes.modifiers,
-      ),
+      page: () => const ModifierGroupListPage(),
+      binding: ModifierBinding(),
     ),
     GetPage(
       name: AdminRoutes.modifierNew,
-      page: () => const PlaceholderView(
-        title: 'New Modifier Group',
-        routePath: AdminRoutes.modifierNew,
-      ),
+      page: () => const ModifierGroupFormPage(),
+      binding: ModifierFormBinding(),
     ),
     GetPage(
       name: AdminRoutes.modifierEdit,
-      page: () => const PlaceholderView(
-        title: 'Edit Modifier Group',
-        routePath: AdminRoutes.modifierEdit,
-      ),
+      page: () => const ModifierGroupFormPage(),
+      binding: ModifierFormBinding(),
     ),
     GetPage(
       name: AdminRoutes.tables,
-      page: () => const PlaceholderView(
-        title: 'Dining Tables',
-        routePath: AdminRoutes.tables,
-      ),
+      page: () => const TableListPage(),
+      binding: TableBinding(),
     ),
     GetPage(
       name: AdminRoutes.tableNew,
-      page: () => const PlaceholderView(
-        title: 'Add Table',
-        routePath: AdminRoutes.tableNew,
-      ),
+      page: () => const TableFormPage(),
+      binding: TableFormBinding(),
     ),
     GetPage(
       name: AdminRoutes.tableDetail,
-      page: () => const PlaceholderView(
-        title: 'Table Details',
-        routePath: AdminRoutes.tableDetail,
-      ),
+      page: () => const TableFormPage(),
+      binding: TableFormBinding(),
     ),
     GetPage(
       name: AdminRoutes.tableQr,
-      page: () => const PlaceholderView(
-        title: 'QR Code Preview',
-        routePath: AdminRoutes.tableQr,
-      ),
+      page: () => const QrPreviewPage(),
+      binding: QrBinding(),
     ),
     GetPage(
       name: AdminRoutes.staff,

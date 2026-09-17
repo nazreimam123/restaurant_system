@@ -21,6 +21,9 @@ export 'auth/profile_model.dart';
 export 'restaurant/restaurant_summary.dart';
 export 'restaurant/branch_summary.dart';
 export 'restaurant/dining_table_summary.dart';
+export 'restaurant/dining_area_model.dart';
+export 'restaurant/dining_table_model.dart';
+export 'restaurant/qr_rotation_result.dart';
 export 'restaurant/qr_ordering_options.dart';
 export 'restaurant/qr_context.dart';
 export 'restaurant/restaurant_membership.dart';
@@ -31,8 +34,12 @@ export 'restaurant/customer_restaurant_context.dart';
 // Menu
 export 'menu/modifier_model.dart';
 export 'menu/modifier_group_model.dart';
+export 'menu/admin_modifier_model.dart';
+export 'menu/admin_modifier_group_model.dart';
 export 'menu/product_model.dart';
+export 'menu/admin_product_model.dart';
 export 'menu/category_model.dart';
+export 'menu/admin_category_model.dart';
 export 'menu/restaurant_menu.dart';
 
 // Cart

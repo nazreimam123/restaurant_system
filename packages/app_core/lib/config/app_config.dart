@@ -18,6 +18,7 @@ class AppConfig {
   final String supabaseAnonKey;
   final String appName;
   final String apiBaseUrl;
+  final String orderBaseUrl;
 
   const AppConfig({
     required this.environment,
@@ -25,6 +26,7 @@ class AppConfig {
     required this.supabaseAnonKey,
     required this.appName,
     this.apiBaseUrl = '',
+    this.orderBaseUrl = 'https://order.example.com',
   });
 
   /// Factory loading configuration from environment variables / --dart-define.
@@ -44,25 +46,36 @@ class AppConfig {
       'SUPABASE_ANON_KEY',
       defaultValue: '',
     );
+    const envSupabasePublishableKey = String.fromEnvironment(
+      'SUPABASE_PUBLISHABLE_KEY',
+      defaultValue: '',
+    );
     const envApiBaseUrl = String.fromEnvironment(
       'API_BASE_URL',
       defaultValue: '',
     );
 
-    // In development mode, credentials come from --dart-define or explicit config.
+    const envOrderBaseUrl = String.fromEnvironment(
+      'ORDER_BASE_URL',
+      defaultValue: 'https://order.example.com',
+    );
+
+    // In development mode, credentials come from --dart-define, --dart-define-from-file, or explicit config.
     // If not provided, isConfigured remains false so the app boots in offline/unconfigured mode.
     final resolvedUrl = envSupabaseUrl;
-    final resolvedAnonKey = envSupabaseAnonKey;
+    final resolvedAnonKey = envSupabaseAnonKey.isNotEmpty
+        ? envSupabaseAnonKey
+        : envSupabasePublishableKey;
 
     if (activeEnv.isProduction) {
       if (resolvedUrl.isEmpty || resolvedAnonKey.isEmpty) {
         throw StateError(
-          'Production build requires SUPABASE_URL and SUPABASE_ANON_KEY passed via --dart-define.',
+          'Production build requires SUPABASE_URL and SUPABASE_ANON_KEY (or SUPABASE_PUBLISHABLE_KEY) passed via --dart-define or file.',
         );
       }
     }
 
-    return AppConfig(
+    final config = AppConfig(
       environment: activeEnv,
       supabaseUrl: resolvedUrl,
       supabaseAnonKey: resolvedAnonKey,
@@ -72,10 +85,20 @@ class AppConfig {
               ? 'Restaurant Ordering'
               : 'Restaurant Ordering (${activeEnv.name})'),
       apiBaseUrl: envApiBaseUrl,
+      orderBaseUrl: envOrderBaseUrl,
     );
+    _current = config;
+    return config;
   }
 
+  static AppConfig? _current;
+  static AppConfig get current => _current ??= AppConfig.fromEnvironment();
+  static set current(AppConfig config) => _current = config;
+
   bool get isConfigured => supabaseUrl.isNotEmpty && supabaseAnonKey.isNotEmpty;
+
+  /// Client-safe publishable key alias for [supabaseAnonKey]
+  String get supabasePublishableKey => supabaseAnonKey;
 
   @override
   String toString() =>
