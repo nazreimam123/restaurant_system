@@ -23,6 +23,10 @@ export 'restaurant/branch_summary.dart';
 export 'restaurant/dining_table_summary.dart';
 export 'restaurant/qr_ordering_options.dart';
 export 'restaurant/qr_context.dart';
+export 'restaurant/restaurant_membership.dart';
+export 'restaurant/branch_access.dart';
+export 'restaurant/merchant_context.dart';
+export 'restaurant/customer_restaurant_context.dart';
 
 // Menu
 export 'menu/modifier_model.dart';

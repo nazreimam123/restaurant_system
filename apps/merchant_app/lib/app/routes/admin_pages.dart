@@ -1,5 +1,11 @@
 import 'package:get/get.dart';
+import '../../features/auth/bindings/login_binding.dart';
+import '../../features/auth/views/login_view.dart';
+import '../../features/branch_select/bindings/branch_select_binding.dart';
+import '../../features/branch_select/views/branch_select_view.dart';
 import '../../features/placeholder/placeholder_view.dart';
+import '../../features/restaurant_select/bindings/restaurant_select_binding.dart';
+import '../../features/restaurant_select/views/restaurant_select_view.dart';
 import '../../features/splash/bindings/splash_binding.dart';
 import '../../features/splash/views/splash_view.dart';
 import 'admin_routes.dart';
@@ -17,24 +23,18 @@ class AdminPages {
     ),
     GetPage(
       name: AdminRoutes.login,
-      page: () => const PlaceholderView(
-        title: 'Staff Login',
-        routePath: AdminRoutes.login,
-      ),
+      page: () => const LoginView(),
+      binding: LoginBinding(),
     ),
     GetPage(
       name: AdminRoutes.selectRestaurant,
-      page: () => const PlaceholderView(
-        title: 'Select Restaurant',
-        routePath: AdminRoutes.selectRestaurant,
-      ),
+      page: () => const RestaurantSelectView(),
+      binding: RestaurantSelectBinding(),
     ),
     GetPage(
       name: AdminRoutes.selectBranch,
-      page: () => const PlaceholderView(
-        title: 'Select Branch',
-        routePath: AdminRoutes.selectBranch,
-      ),
+      page: () => const BranchSelectView(),
+      binding: BranchSelectBinding(),
     ),
     GetPage(
       name: AdminRoutes.dashboard,
