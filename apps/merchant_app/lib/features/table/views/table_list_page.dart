@@ -229,7 +229,7 @@ class TableListPage extends GetView<TableController> {
                 ),
               ),
 
-            const Spacer(),
+            const SizedBox(height: AppSpacing.sm),
             const Divider(height: AppSpacing.sm),
 
             // Actions row: View QR, Edit, Active switch, Delete
@@ -240,6 +240,8 @@ class TableListPage extends GetView<TableController> {
                   icon: const Icon(Icons.qr_code_2, size: 18),
                   label: const Text('View QR'),
                   style: OutlinedButton.styleFrom(
+                    minimumSize: Size.zero,
+                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     padding: const EdgeInsets.symmetric(
                       horizontal: AppSpacing.sm,
                       vertical: AppSpacing.xs,

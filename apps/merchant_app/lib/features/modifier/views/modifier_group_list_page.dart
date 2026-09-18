@@ -190,52 +190,69 @@ class ModifierGroupListPage extends GetView<ModifierController> {
             const Divider(height: AppSpacing.md),
 
             // Options preview
-            Expanded(
-              child: group.modifiers.isEmpty
-                  ? Text(
-                      'No options defined',
-                      style: AppTextStyles.caption.copyWith(
-                        fontStyle: FontStyle.italic,
-                        color: AppColors.textSecondary,
-                      ),
-                    )
-                  : ListView(
-                      physics: const ClampingScrollPhysics(),
-                      children: group.modifiers.map((m) {
-                        return Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 2.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Expanded(
-                                child: Text(
-                                  m.name,
-                                  style: AppTextStyles.body.copyWith(
-                                    decoration: m.isAvailable
-                                        ? null
-                                        : TextDecoration.lineThrough,
-                                  ),
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
+            if (group.modifiers.isEmpty)
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: AppSpacing.xs),
+                child: Text(
+                  'No options defined',
+                  style: AppTextStyles.caption.copyWith(
+                    fontStyle: FontStyle.italic,
+                    color: AppColors.textSecondary,
+                  ),
+                ),
+              )
+            else
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ...group.modifiers.take(4).map((m) {
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 2.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: Text(
+                              m.name,
+                              style: AppTextStyles.body.copyWith(
+                                decoration: m.isAvailable
+                                    ? null
+                                    : TextDecoration.lineThrough,
                               ),
-                              Text(
-                                m.priceDeltaMinor > 0
-                                    ? '+${CurrencyFormatter.format(m.priceDeltaMinor)}'
-                                    : 'Free',
-                                style: AppTextStyles.caption.copyWith(
-                                  fontWeight: FontWeight.w600,
-                                  color: m.priceDeltaMinor > 0
-                                      ? AppColors.primary
-                                      : AppColors.textSecondary,
-                                ),
-                              ),
-                            ],
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
                           ),
-                        );
-                      }).toList(),
+                          Text(
+                            m.priceDeltaMinor > 0
+                                ? '+${CurrencyFormatter.format(m.priceDeltaMinor)}'
+                                : 'Free',
+                            style: AppTextStyles.caption.copyWith(
+                              fontWeight: FontWeight.w600,
+                              color: m.priceDeltaMinor > 0
+                                  ? AppColors.primary
+                                  : AppColors.textSecondary,
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  }),
+                  if (group.modifiers.length > 4)
+                    Padding(
+                      padding: const EdgeInsets.only(top: AppSpacing.xs),
+                      child: Text(
+                        '+ ${group.modifiers.length - 4} more options',
+                        style: AppTextStyles.caption.copyWith(
+                          color: AppColors.primary,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
                     ),
-            ),
+                ],
+              ),
+
+            const Divider(height: AppSpacing.md),
 
             // Footer row: Active toggle
             Row(

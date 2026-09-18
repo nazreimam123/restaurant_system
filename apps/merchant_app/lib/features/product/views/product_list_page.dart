@@ -149,6 +149,7 @@ class ProductListPage extends GetView<ProductController> {
                 flex: 2,
                 child: Obx(
                   () => DropdownButtonFormField<String>(
+                    isExpanded: true,
                     initialValue: controller.selectedCategoryId.value.isEmpty
                         ? null
                         : controller.selectedCategoryId.value,
@@ -351,7 +352,7 @@ class ProductListPage extends GetView<ProductController> {
               ),
             ],
 
-            const Spacer(),
+            const SizedBox(height: AppSpacing.sm),
             const Divider(height: AppSpacing.md),
 
             // Bottom controls: Available toggle & Active toggle
@@ -378,6 +379,8 @@ class ProductListPage extends GetView<ProductController> {
                     ),
                   ),
                   style: OutlinedButton.styleFrom(
+                    minimumSize: Size.zero,
+                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     padding: const EdgeInsets.symmetric(
                       horizontal: AppSpacing.sm,
                       vertical: AppSpacing.xs,

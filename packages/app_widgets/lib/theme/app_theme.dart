@@ -50,7 +50,7 @@ class AppTheme {
           foregroundColor: AppColors.textOnPrimary,
           disabledBackgroundColor: AppColors.disabled,
           disabledForegroundColor: AppColors.disabledText,
-          minimumSize: const Size(double.infinity, 48.0),
+          minimumSize: const Size(64.0, 44.0),
           padding: const EdgeInsets.symmetric(
             horizontal: AppSpacing.lg,
             vertical: AppSpacing.md,
@@ -64,7 +64,7 @@ class AppTheme {
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
           foregroundColor: AppColors.textPrimary,
-          minimumSize: const Size(double.infinity, 48.0),
+          minimumSize: const Size(64.0, 44.0),
           padding: const EdgeInsets.symmetric(
             horizontal: AppSpacing.lg,
             vertical: AppSpacing.md,
