@@ -3,7 +3,11 @@ import '../../core/services/restaurant_context_service.dart';
 import '../../core/services/session_service.dart';
 import '../../core/services/supabase_service.dart';
 import '../../data/repositories/auth_repository.dart';
+import '../../data/repositories/customer_menu_repository.dart';
+import '../../data/repositories/customer_qr_repository.dart';
 import '../../data/repositories/supabase_auth_repository.dart';
+import '../../data/repositories/supabase_customer_menu_repository.dart';
+import '../../data/repositories/supabase_customer_qr_repository.dart';
 
 /// Global bindings initialized at customer application startup.
 class InitialBinding extends Bindings {
@@ -30,6 +34,18 @@ class InitialBinding extends Bindings {
     // 4. Restaurant & Table Context Service
     Get.put<RestaurantContextService>(
       RestaurantContextService(),
+      permanent: true,
+    );
+
+    // 5. QR Repository
+    Get.put<CustomerQrRepository>(
+      SupabaseCustomerQrRepository(supabaseService: supabaseService),
+      permanent: true,
+    );
+
+    // 6. Menu Repository
+    Get.put<CustomerMenuRepository>(
+      SupabaseCustomerMenuRepository(supabaseService: supabaseService),
       permanent: true,
     );
   }

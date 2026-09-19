@@ -5,6 +5,7 @@ import '../../../app/routes/app_routes.dart';
 import '../../../core/services/restaurant_context_service.dart';
 import '../../../core/services/session_service.dart';
 import '../../../core/services/supabase_service.dart';
+import '../../../data/repositories/customer_menu_repository.dart';
 
 class SplashController extends GetxController {
   final RxBool isLoading = true.obs;
@@ -14,6 +15,8 @@ class SplashController extends GetxController {
   final SessionService _sessionService = Get.find<SessionService>();
   final RestaurantContextService _restaurantContextService =
       Get.find<RestaurantContextService>();
+  final CustomerMenuRepository _menuRepository =
+      Get.find<CustomerMenuRepository>();
 
   @override
   void onReady() {
@@ -52,14 +55,39 @@ class SplashController extends GetxController {
 
       isLoading.value = false;
 
-      // 5. Route determination based on restored context
+      // 5. Route determination based on validated restored context
       if (Get.currentRoute == AppRoutes.splash) {
         if (_restaurantContextService.hasValidContext) {
-          developer.log(
-            'SplashController: Found valid saved restaurant context (${_restaurantContextService.branchId}). Routing to menu.',
-            name: 'SplashController',
-          );
-          Get.offNamed(AppRoutes.menu);
+          final branchId = _restaurantContextService.branchId;
+          bool isValidBranch = false;
+
+          if (branchId != null) {
+            try {
+              // Validate that branch is active and accessible
+              await _menuRepository.getPublicMenu(branchId);
+              isValidBranch = true;
+            } catch (e) {
+              developer.log(
+                'SplashController: Restored context branch ($branchId) is no longer valid: $e. Clearing context.',
+                name: 'SplashController',
+              );
+              _restaurantContextService.clearContext();
+            }
+          }
+
+          if (isValidBranch) {
+            developer.log(
+              'SplashController: Verified saved restaurant context ($branchId). Routing to menu.',
+              name: 'SplashController',
+            );
+            Get.offNamed(AppRoutes.menu);
+          } else {
+            developer.log(
+              'SplashController: Routing to QR scanner.',
+              name: 'SplashController',
+            );
+            Get.offNamed(AppRoutes.scan);
+          }
         } else {
           developer.log(
             'SplashController: No saved restaurant context found. Routing to QR scanner.',

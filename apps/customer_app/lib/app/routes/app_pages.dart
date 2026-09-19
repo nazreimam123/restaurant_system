@@ -1,5 +1,11 @@
 import 'package:get/get.dart';
+import '../../features/menu/bindings/menu_binding.dart';
+import '../../features/menu/views/menu_view.dart';
 import '../../features/placeholder/placeholder_view.dart';
+import '../../features/product_detail/bindings/product_detail_binding.dart';
+import '../../features/product_detail/views/product_detail_view.dart';
+import '../../features/qr_scanner/bindings/qr_scanner_binding.dart';
+import '../../features/qr_scanner/views/qr_scanner_view.dart';
 import '../../features/splash/bindings/splash_binding.dart';
 import '../../features/splash/views/splash_view.dart';
 import 'app_routes.dart';
@@ -17,24 +23,18 @@ class AppPages {
     ),
     GetPage(
       name: AppRoutes.scan,
-      page: () => const PlaceholderView(
-        title: 'Scan QR Code',
-        routePath: AppRoutes.scan,
-      ),
+      page: () => const QrScannerView(),
+      binding: QrScannerBinding(),
     ),
     GetPage(
       name: AppRoutes.menu,
-      page: () => const PlaceholderView(
-        title: 'Restaurant Menu',
-        routePath: AppRoutes.menu,
-      ),
+      page: () => const MenuView(),
+      binding: MenuBinding(),
     ),
     GetPage(
       name: AppRoutes.productDetail,
-      page: () => const PlaceholderView(
-        title: 'Product Details',
-        routePath: AppRoutes.productDetail,
-      ),
+      page: () => const ProductDetailView(),
+      binding: ProductDetailBinding(),
     ),
     GetPage(
       name: AppRoutes.cart,

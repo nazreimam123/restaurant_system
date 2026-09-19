@@ -60,12 +60,18 @@ class AppConfig {
       defaultValue: 'https://order.example.com',
     );
 
-    // In development mode, credentials come from --dart-define, --dart-define-from-file, or explicit config.
-    // If not provided, isConfigured remains false so the app boots in offline/unconfigured mode.
-    final resolvedUrl = envSupabaseUrl;
-    final resolvedAnonKey = envSupabaseAnonKey.isNotEmpty
+    var resolvedUrl = envSupabaseUrl;
+    var resolvedAnonKey = envSupabaseAnonKey.isNotEmpty
         ? envSupabaseAnonKey
         : envSupabasePublishableKey;
+
+    // In development mode, fallback to linked development project credentials if not passed via flags
+    if (activeEnv.isDevelopment &&
+        (resolvedUrl.isEmpty || resolvedAnonKey.isEmpty)) {
+      resolvedUrl = 'https://gizipwqdumsmiarsauig.supabase.co';
+      resolvedAnonKey =
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdpemlwd3FkdW1zbWlhcnNhdWlnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODk1OTkyMjgsImV4cCI6MjEwNTE3NTIyOH0.pdpXHHkcHGbN0f1e-zLtw01zkMr0GEWtnbWWpt5ZTU4';
+    }
 
     if (activeEnv.isProduction) {
       if (resolvedUrl.isEmpty || resolvedAnonKey.isEmpty) {

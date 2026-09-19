@@ -54,8 +54,10 @@ class ErrorMapper {
       );
     }
 
-    // Check for 403 / 401 / permission denied
+    // Check for 403 / 401 / 42501 / permission denied
     if (errStr.contains('403') ||
+        errStr.contains('401') ||
+        errStr.contains('42501') ||
         errStr.contains('row-level security policy') ||
         errStr.contains('permission denied')) {
       return PermissionDeniedException(
@@ -77,6 +79,15 @@ class ErrorMapper {
     if (error is FormatException || errStr.contains('FormatException')) {
       return ParseException(
         message: 'Failed to process server response.',
+        cause: error,
+      );
+    }
+
+    // Check for StateError (e.g. uninitialized service or configuration)
+    if (error is StateError) {
+      return ServerException(
+        message: error.message,
+        code: ErrorCode.serverError,
         cause: error,
       );
     }

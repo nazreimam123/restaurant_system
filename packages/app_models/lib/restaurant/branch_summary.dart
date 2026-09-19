@@ -29,7 +29,7 @@ class BranchSummary {
   factory BranchSummary.fromJson(Map<String, dynamic> json) {
     return BranchSummary(
       id: json['id'] as String,
-      restaurantId: json['restaurant_id'] as String,
+      restaurantId: json['restaurant_id'] as String? ?? '',
       name: json['name'] as String,
       code: json['code'] as String?,
       phone: json['phone'] as String?,

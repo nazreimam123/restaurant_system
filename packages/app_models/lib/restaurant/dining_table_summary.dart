@@ -19,7 +19,7 @@ class DiningTableSummary {
   factory DiningTableSummary.fromJson(Map<String, dynamic> json) {
     return DiningTableSummary(
       id: json['id'] as String,
-      branchId: json['branch_id'] as String,
+      branchId: json['branch_id'] as String? ?? '',
       name: json['name'] as String,
       capacity: json['capacity'] as int?,
       isActive: json['is_active'] as bool? ?? true,
